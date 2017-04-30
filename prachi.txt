@@ -1,0 +1,96 @@
+#include<iostream>
+#include<stdio.h>
+
+#define max 1000000007
+
+using namespace std;
+
+bool isprime(long x)
+{
+	if(x==1 || x==0)
+	return 0;
+	
+	if(x == 2 || x==3)
+	return 1;
+	
+	if(x%2 == 0)
+	return 0;
+	
+	for(long i=3;i<=x;i+=2)
+	{
+		if(x%i == 0)
+		return 0;
+	}
+	
+	return 1;
+}
+
+void p(int n)
+{
+	int a[] = {111, 117, 114};
+	
+	for(float i=0;i<n;i++)
+	printf("%c", a[(int)i]);
+	
+	printf(" ");
+}
+
+void pr(int n)
+{
+	int a[] = {102, 105, 114, 115, 116};
+	
+	for(float i=0;i<n;i++)
+	printf("%c", a[(int)i]);
+	
+	printf(" ");
+}
+
+void pra(int n)
+{
+	int a[] = {119, 111, 109, 97, 110};
+	
+	for(float i=0;i<n;i++)
+	printf("%c", a[(int)i]);
+	
+	printf(" ");
+}
+
+void prac(int n)
+{
+	int a[] = {112, 114, 105, 109, 101};
+	
+	for(float i=0;i<n;i++)
+	printf("%c", a[(int)i]);
+	
+	printf(" ");
+}
+
+void prach(int n)
+{
+	int a[] = {109, 105, 110, 105, 115, 116, 101, 114};
+	
+	for(float i=0;i<n;i++)
+	printf("%c", a[(int)i]);
+	
+	printf(" ");
+}
+
+int prachi(int n)
+{
+	if(isprime(n) || !isprime(n))
+	{
+		int x = 1<<2;
+		return (x + 59);
+	}
+}
+
+int main()
+{
+	p(3);
+	pr(5);
+	pra(5);
+	prac(5);
+	prach(8);
+	printf("%c", prachi(max));
+	
+}

@@ -1,5 +1,6 @@
 <?php
 	include('connect.php');
+	include('header.php');
 	
 	if(isset($_POST['login']))
 	{
@@ -9,27 +10,21 @@
 	
 		if(mysqli_num_rows(mysqli_query($link, $query)) == 0)
 		{
-			echo '<div class="alert alert-warning" role="alert">
-				  <strong>Not Found! </strong> You may want to Sign Up.
-				</div>';
+			$query = "INSERT INTO users SET user = '".mysqli_real_escape_string($link, $user)."'";
+			mysqli_query($link, $query);
+			include('admin.php');
+			
+			
+			setcookie("teamname", $user, time() + 60*60*24);
+			header("Location: index.php");
 		}
 		
 		else
 		{
-			setcookie("teamname", $user, time() + 60*60*24);
-			header("Location: index.php");
+			echo "<h3><b><br>Username exists, try a different one.<br></b></h3>";
 		}
 	}
 	
-	if($_COOKIE['teamname']!='')
-	{
-		;
-	}
-			
-	else
-		echo '<div class="alert alert-danger" role="alert">
-		  <strong>You need to Log in First!</strong>
-			</div>';
 				
 
 ?>
@@ -42,7 +37,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Parakram 2017</title>
+	<title>CipherTech | SignUp</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -70,10 +65,30 @@
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     
-	<?php include('header.php'); ?>
+	<div class="container">
 				
-				<div class="container">
-				<div class="container1" style="float:left;width:30vw">
+				<div class="container1" style="float:right;width:30vw;">
+				
+				
+				
+				<form method="post">
+				  <div class="form-group">
+					
+					<label for="example-text-input" class="col-2 col-form-label"><h1><strong>SignUp</strong></h1></label>
+					  <div class="col-10">
+						<input class="form-control" name="user" type="text" value="" id="example-text-input" style="margin-top:5vh;width:300px" placeholder="Enter Team Name">
+						<button type="submit" name="login" class="btn btn-primary" style="margin-top:2.5vh">SignUp</button>
+					  </div>
+					
+				  </div>
+				  
+	
+				
+				</div>
+				
+				<div class="container2" style="float:left;width:30vw;">
+				
+				
 				<h3><b>Instructions</b></h3><br>
 				<ul>
 				
@@ -86,27 +101,11 @@
 				<li>Taking help from the Internet is strictly not allowed.</li>
 				<li>Anyone found indulging in any inappropriate activity will be disqualified.</li>
 				
-				<li>The Answer to every question will be <b>textual</b> or may contain <b>numbers</b>, it will <b>not</b> contain any <b>spaces</b> or <b>special characters</b></li>
+				<li>The Answer to every question will be <b>textual <b>(lower case letters only)</b></b> or may contain <b>numbers</b>, it will <b>not</b> contain any <b>spaces</b> or <b>special characters</b></li>
 				
 				</ul>
 				</div>
-				
-				<div class="container1" style="float:right;width:30vw">
-				<form method="post">
-				  <div class="form-group">
-					
-					<label for="example-text-input" class="col-2 col-form-label"><h1><strong>TeamName</strong></h1></label>
-					  <div class="col-10">
-						<input class="form-control" name="user" type="text" value="" id="example-text-input" style="margin-top:5vh;width:300px" placeholder="Enter Your Team Name">
-						<button type="submit" name="login" class="btn btn-primary" style="margin-top:2.5vh">Login</button>
-					  </div>
-					
-				  </div></div>
-				  
-	
-				
-				</div>
-  
+  </div>
   
   </body>
 </html>
