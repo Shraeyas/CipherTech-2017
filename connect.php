@@ -1,9 +1,9 @@
 <?php
-	$link = mysqli_connect("localhost", "root", "", "cipher");
+	$link = mysqli_connect("localhost", "Username", "Password", "Database name");
 	
 	if(mysqli_connect_error())
 	{
-		die("<marquee>You hurt me always! Goodbye! Forever! :'| </marquee>");
+		die("Cannnot Connect.");
 	}	
 	
 ?>
